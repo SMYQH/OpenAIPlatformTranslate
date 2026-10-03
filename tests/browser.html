@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects</title>
+  <style>
+    body { font: 16px/1.5 system-ui, sans-serif; margin: 2rem; }
+    main { max-width: 72rem; }
+    .fixture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
+    section { border: 1px solid #bbb; border-radius: .5rem; padding: 1rem; }
+    #summary[data-status="FAIL"] { color: #a00; font-weight: 700; }
+    #summary[data-status="PASS"] { color: #075d20; font-weight: 700; }
+    #details li[data-status="FAIL"] { color: #a00; }
+    #details li[data-status="PASS"] { color: #075d20; }
+    #dynamic-host { min-height: 1px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 id="resource-heading">Home</h1>
+    <h2 id="generic-heading">Settings</h2>
+
+    <div class="fixture-grid">
+      <section aria-label="Project control fixture">
+        <h3>Project control</h3>
+        <span id="project-visible-label">Project</span>
+        <button id="project-control" type="button" role="combobox" aria-label="Project" aria-labelledby="project-visible-label" aria-controls="project-options" title="Home">Home</button>
+        <div id="project-options" role="listbox">
+          <a id="project-option" role="option" href="/projects/proj_test" aria-label="Home" title="Home">Home</a>
+          <button id="resource-menuitem" type="button" role="menuitem" title="Home">Home</button>
+          <button id="create-project-menuitem" type="button" role="menuitem">Create project</button>
+          <button id="create-new-project-menuitem" type="button" role="menuitem">Create a new project</button>
+          <button id="manage-projects-menuitem" type="button" role="menuitem">Manage projects</button>
+          <button id="organization-settings-menuitem" type="button" role="menuitem">Organization settings</button>
+          <button id="profile-settings-menuitem" type="button" role="menuitem">Profile settings</button>
+          <button id="resource-popup-helper" type="button" aria-label="Search" title="Search">Search</button>
+          <input id="project-search" type="search" placeholder="Search">
+        </div>
+        <button id="ordinary-home" type="button">Home</button>
+      </section>
+
+      <section aria-label="Organization control fixture">
+        <h3>Organization control</h3>
+        <label id="organization-label" for="organization-control">Organization</label>
+        <select id="organization-control" aria-controls="organization-options">
+          <option>Search</option>
+        </select>
+        <div id="organization-options" role="listbox">
+          <div id="organization-option" role="option">Search</div>
+          <input id="organization-search" type="search" placeholder="Search">
+        </div>
+      </section>
+
+      <section aria-label="Environment template control fixture">
+        <h3>Environment template control</h3>
+        <button id="environment-template-control" type="button" role="combobox" aria-label="Select an environment template" aria-controls="environment-template-options" title="Home">Home</button>
+        <div id="environment-template-options" role="listbox">
+          <div id="environment-template-option" role="option" title="Home">Home</div>
+          <button id="create-environment-template-menuitem" type="button" role="menuitem">Create environment template</button>
+          <input id="environment-template-search" type="search" placeholder="Search">
+        </div>
+      </section>
+
+      <section aria-label="Resource table fixture">
+        <h3>Resource table</h3>
+        <table id="resource-table">
+          <thead><tr><th>Name</th><th>Last used</th></tr></thead>
+          <tbody>
+            <tr>
+              <td id="resource-name-cell" title="My Test Key" aria-label="My Test Key">
+                <a id="resource-name-link" href="/api-keys/key_test" title="My Test Key" aria-label="My Test Key">My Test Key</a>
+              </td>
+              <td id="last-used-cell">Never</td>
+            </tr>
+          </tbody>
+        </table>
+        <div role="radiogroup" aria-label="Project default">
+          <label><input id="default-radio" type="radio" name="project-default"><span id="default-radio-label">Default</span></label>
+        </div>
+      </section>
+
+      <section aria-label="Editor and search fixture">
+        <h3>Editor and search</h3>
+        <input id="search-input" type="search" value="Search" placeholder="Search" aria-label="Search" title="Search">
+        <textarea id="search-textarea" placeholder="Search" aria-label="Search">Search</textarea>
+        <div id="cm-editor" class="cm-editor" data-placeholder="Search" aria-label="Search" title="Search">
+          <span id="cm-editor-child" title="Search" aria-label="Search">Search</span>
+        </div>
+        <div id="monaco-hint-editor" class="monaco-editor" data-placeholder="Search" aria-label="Search" title="Search">
+          <span id="monaco-hint-child" title="Search" aria-label="Search">Search</span>
+        </div>
+        <div id="menu-search" role="menu">
+          <button id="menu-search-button" type="button" title="Search" aria-label="Search">Search</button>
+        </div>
+      </section>
+
+      <section aria-label="Protected content fixture">
+        <h3>Protected content</h3>
+        <code id="protected-code" title="Search" aria-label="Search">Search</code>
+        <pre id="protected-pre" title="Search" aria-label="Search">Search</pre>
+        <div id="protected-editable" contenteditable="true" title="Search" aria-label="Search" data-placeholder="Search">Search</div>
+        <div id="protected-prose" class="prose" title="Search" aria-label="Search">Search</div>
+        <div id="protected-markdown" class="markdown" title="Search" aria-label="Search">Search</div>
+        <div id="protected-markdown-body" class="markdown-body" title="Search" aria-label="Search">Search</div>
+        <div id="protected-user-content" data-user-content title="Search" aria-label="Search">Search</div>
+        <div id="ignored-translate-no" translate="no" title="Search" aria-label="Search">Search</div>
+        <div id="ignored-data-marker" data-openai-translate="ignore" title="Search" aria-label="Search">Search</div>
+        <span id="resource-name-marker" data-resource-name title="Search" aria-label="Search">Search</span>
+        <div id="protected-monaco" class="monaco-editor" title="Search" aria-label="Search">Search</div>
+        <div id="protected-message" data-message-author-role="user" title="Search" aria-label="Search">Search</div>
+        <span id="protected-tokenizer" class="tokenizer-tkn" title="Search" aria-label="Search">Search</span>
+      </section>
+
+      <section aria-label="Identity labels fixture">
+        <h3>Identity labels</h3>
+        <button id="identity-agents" data-identity-probe type="button" title="Agents" aria-label="Agents">Agents</button>
+        <button id="identity-codex" data-identity-probe type="button" title="Codex" aria-label="Codex">Codex</button>
+        <button id="identity-live" data-identity-probe type="button" title="Live" aria-label="Live">Live</button>
+        <button id="identity-realtime" data-identity-probe type="button" title="Realtime" aria-label="Realtime">Realtime</button>
+      </section>
+
+      <section aria-label="Live mutation fixture">
+        <h3>Live mutation fixture</h3>
+        <p id="mutable-text">Search</p>
+        <button id="mutable-attributes" type="button" title="Search" aria-label="Search">Search</button>
+      </section>
+    </div>
+
+    <section aria-label="Browser regression results">
+      <h2>Browser regression results</h2>
+      <p id="summary" data-status="RUNNING" role="status">RUNNING: browser checks are in progress.</p>
+      <ul id="details" aria-live="polite"></ul>
+    </section>
+
+    <div id="dynamic-host" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    (() => {
+      const diagnostics = {
+        titleMutations: 0,
+        identityMutations: 0,
+        totalMutationRecords: 0,
+        bulkRoot: null,
+        bulkTextMutationCount: 0,
+        bulkTitleMutationCount: 0,
+        bulkTextTargets: new Set(),
+        bulkTitleTargets: new Set()
+      };
+      window.__browserFixtureDiagnostics = diagnostics;
+
+      const title = document.querySelector("title");
+      new MutationObserver((records) => {
+        diagnostics.titleMutations += records.length;
+      }).observe(title, { subtree: true, childList: true, characterData: true });
+
+      const isWithin = (target, selector) => {
+        const element = target.nodeType === Node.ELEMENT_NODE ? target : target.parentElement;
+        return Boolean(element?.closest(selector));
+      };
+
+      new MutationObserver((records) => {
+        diagnostics.totalMutationRecords += records.length;
+        for (const record of records) {
+          if (isWithin(record.target, "[data-identity-probe]")) {
+            diagnostics.identityMutations += 1;
+          }
+
+          const bulkRoot = diagnostics.bulkRoot;
+          const element = record.target.nodeType === Node.ELEMENT_NODE ? record.target : record.target.parentElement;
+          if (!bulkRoot || !element || (element !== bulkRoot && !bulkRoot.contains(element))) continue;
+          if (record.type === "characterData") {
+            diagnostics.bulkTextMutationCount += 1;
+            diagnostics.bulkTextTargets.add(record.target);
+          }
+          if (record.type === "attributes" && record.attributeName === "title") {
+            diagnostics.bulkTitleMutationCount += 1;
+            diagnostics.bulkTitleTargets.add(record.target);
+          }
+        }
+      }).observe(document.documentElement, {
+        subtree: true,
+        childList: true,
+        characterData: true,
+        attributes: true
+      });
+    })();
+  </script>
+  <script src="/OpenAIPlatformTranslate.user.js"></script>
+  <script>
+    (() => {
+      const checks = [];
+      let finished = false;
+
+      function addCheck(name, passed, details = "") {
+        checks.push({ name, passed: Boolean(passed), details });
+      }
+
+      function text(id) {
+        return document.getElementById(id)?.textContent.trim() ?? "<missing>";
+      }
+
+      function value(id) {
+        return document.getElementById(id)?.value ?? "<missing>";
+      }
+
+      function attribute(id, name) {
+        return document.getElementById(id)?.getAttribute(name) ?? "<missing>";
+      }
+
+      function render() {
+        const passed = checks.filter((check) => check.passed).length;
+        const failed = checks.length - passed;
+        const summary = document.getElementById("summary");
+        summary.dataset.status = failed === 0 ? "PASS" : "FAIL";
+        summary.textContent = `${failed === 0 ? "PASS" : "FAIL"}: ${passed} passed, ${failed} failed.`;
+
+        const details = document.getElementById("details");
+        details.replaceChildren(...checks.map((check) => {
+          const item = document.createElement("li");
+          item.dataset.status = check.passed ? "PASS" : "FAIL";
+          item.textContent = `${check.passed ? "PASS" : "FAIL"}: ${check.name}${check.details ? ` — ${check.details}` : ""}`;
+          return item;
+        }));
+      }
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        window.__browserFixtureDone = true;
+        render();
+      }
+
+      function waitFor(predicate, timeoutMs, message) {
+        return new Promise((resolve) => {
+          const startedAt = performance.now();
+          function poll() {
+            if (predicate()) {
+              resolve(true);
+              return;
+            }
+            if (performance.now() - startedAt >= timeoutMs) {
+              addCheck(message, false, `timed out after ${timeoutMs} ms`);
+              resolve(false);
+              return;
+            }
+            requestAnimationFrame(poll);
+          }
+          poll();
+        });
+      }
+
+      function nextFrame() {
+        return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+      }
+
+      async function run() {
+        try {
+          await waitFor(
+            () => document.title === "项目" && attribute("project-control", "aria-label") === "项目",
+            3000,
+            "Initial userscript translation completed"
+          );
+
+          addCheck("Page title Projects translates", document.title === "项目", `actual: ${document.title}`);
+          addCheck("Projects document title updates only once", window.__browserFixtureDiagnostics.titleMutations === 1, `observed ${window.__browserFixtureDiagnostics.titleMutations} title mutations`);
+          addCheck("Project combobox label translates", attribute("project-control", "aria-label") === "项目", `actual: ${attribute("project-control", "aria-label")}`);
+          addCheck("Project aria-labelledby relationship stays intact", attribute("project-control", "aria-labelledby") === "project-visible-label" && text("project-visible-label") === "项目");
+          addCheck("Project popup relationship stays intact", attribute("project-control", "aria-controls") === "project-options");
+          addCheck("Selected project resource name stays intact", text("project-control") === "Home" && attribute("project-control", "title") === "Home");
+          addCheck("Project option resource name and attributes stay intact", text("project-option") === "Home" && attribute("project-option", "aria-label") === "Home" && attribute("project-option", "title") === "Home");
+          addCheck("Project resource link keeps its URL", attribute("project-option", "href") === "/projects/proj_test");
+          addCheck("Resource menu item stays intact", text("resource-menuitem") === "Home" && attribute("resource-menuitem", "title") === "Home");
+          addCheck("Project creation action translates in the resource popup", text("create-project-menuitem") === "创建项目");
+          addCheck("New project action translates in the resource popup", text("create-new-project-menuitem") === "创建新项目");
+          addCheck("Manage projects action translates in the resource popup", text("manage-projects-menuitem") === "管理项目");
+          addCheck("Organization settings action translates in the resource popup", text("organization-settings-menuitem") === "组织设置");
+          addCheck("Profile settings action translates in the resource popup", text("profile-settings-menuitem") === "个人资料设置");
+          addCheck("Helper button aria-label and title translate in the resource popup", text("resource-popup-helper") === "搜索" && attribute("resource-popup-helper", "aria-label") === "搜索" && attribute("resource-popup-helper", "title") === "搜索");
+          addCheck("Project picker helper placeholder translates", attribute("project-search", "placeholder") === "搜索");
+          addCheck("Ordinary Home menu label translates", text("ordinary-home") === "首页");
+
+          addCheck("Associated Organization label translates", text("organization-label") === "组织");
+          addCheck("Organization popup relationship stays intact", attribute("organization-control", "aria-controls") === "organization-options");
+          addCheck("Native Organization option stays a resource value", text("organization-control") === "Search");
+          addCheck("Organization popup resource option stays intact", text("organization-option") === "Search");
+          addCheck("Organization picker helper placeholder translates", attribute("organization-search", "placeholder") === "搜索");
+
+          addCheck("Environment template combobox label translates", attribute("environment-template-control", "aria-label") === "选择环境模板");
+          addCheck("Environment template popup relationship stays intact", attribute("environment-template-control", "aria-controls") === "environment-template-options");
+          addCheck("Selected environment template stays intact", text("environment-template-control") === "Home" && attribute("environment-template-control", "title") === "Home");
+          addCheck("Environment template option stays intact", text("environment-template-option") === "Home" && attribute("environment-template-option", "title") === "Home");
+          addCheck("Environment template action translates in its popup", text("create-environment-template-menuitem") === "创建环境模板");
+          addCheck("Environment template helper placeholder translates", attribute("environment-template-search", "placeholder") === "搜索");
+
+          addCheck("Name column heading translates", text("resource-table").startsWith("名称上次使用时间"));
+          addCheck("Resource Name cell text and attributes stay intact", text("resource-name-cell") === "My Test Key" && attribute("resource-name-cell", "title") === "My Test Key" && attribute("resource-name-cell", "aria-label") === "My Test Key");
+          addCheck("Resource Name link text, attributes, and URL stay intact", text("resource-name-link") === "My Test Key" && attribute("resource-name-link", "title") === "My Test Key" && attribute("resource-name-link", "aria-label") === "My Test Key" && attribute("resource-name-link", "href") === "/api-keys/key_test");
+          addCheck("Last used Never is contextual", text("last-used-cell") === "从未", `actual: ${text("last-used-cell")}`);
+          addCheck("Default radio label translates", text("default-radio-label") === "默认", `actual: ${text("default-radio-label")}`);
+
+          addCheck("Detail page resource heading stays intact", text("resource-heading") === "Home", `path: ${location.pathname}`);
+          addCheck("Generic detail page heading translates", text("generic-heading") === "设置", `actual: ${text("generic-heading")}`);
+          addCheck("Search input placeholder and UI attributes translate", attribute("search-input", "placeholder") === "搜索" && attribute("search-input", "aria-label") === "搜索" && attribute("search-input", "title") === "搜索");
+          addCheck("Search input value stays user-entered", value("search-input") === "Search");
+          addCheck("Textarea hint attributes translate while its value stays intact", attribute("search-textarea", "placeholder") === "搜索" && attribute("search-textarea", "aria-label") === "搜索" && value("search-textarea") === "Search");
+          addCheck("CodeMirror editor hint translates while title and descendants stay intact", attribute("cm-editor", "data-placeholder") === "搜索" && attribute("cm-editor", "aria-label") === "搜索" && attribute("cm-editor", "title") === "Search" && text("cm-editor-child") === "Search" && attribute("cm-editor-child", "title") === "Search" && attribute("cm-editor-child", "aria-label") === "Search");
+          addCheck("Monaco editor hint translates while title and descendants stay intact", attribute("monaco-hint-editor", "data-placeholder") === "搜索" && attribute("monaco-hint-editor", "aria-label") === "搜索" && attribute("monaco-hint-editor", "title") === "Search" && text("monaco-hint-child") === "Search" && attribute("monaco-hint-child", "title") === "Search" && attribute("monaco-hint-child", "aria-label") === "Search");
+          addCheck("Regular menu text and attributes translate", text("menu-search-button") === "搜索" && attribute("menu-search-button", "title") === "搜索" && attribute("menu-search-button", "aria-label") === "搜索");
+
+          const protectedIds = ["protected-code", "protected-pre", "protected-prose", "protected-markdown", "protected-markdown-body", "protected-user-content", "ignored-translate-no", "ignored-data-marker", "resource-name-marker", "protected-monaco", "protected-message", "protected-tokenizer"];
+          const protectedContentStayedIntact = protectedIds.every((id) =>
+            text(id) === "Search" && attribute(id, "title") === "Search" && attribute(id, "aria-label") === "Search"
+          );
+          addCheck("Protected content, ignored markers, and resource names stay intact", protectedContentStayedIntact);
+          addCheck("Editable root translates only its UI hints", text("protected-editable") === "Search" && attribute("protected-editable", "title") === "Search" && attribute("protected-editable", "aria-label") === "搜索" && attribute("protected-editable", "data-placeholder") === "搜索");
+
+          const editorContent = document.createElement("span");
+          editorContent.contentEditable = "false";
+          editorContent.title = "Search";
+          editorContent.textContent = "Search";
+          document.getElementById("protected-editable").appendChild(editorContent);
+          await nextFrame();
+          await nextFrame();
+          addCheck("Dynamic noneditable editor content stays intact", editorContent.textContent === "Search" && editorContent.title === "Search");
+
+          const identities = ["agents", "codex", "live", "realtime"];
+          const identityLabelsStayedIntact = identities.every((name) => {
+            const id = `identity-${name}`;
+            return text(id) === name[0].toUpperCase() + name.slice(1)
+              && attribute(id, "title") === name[0].toUpperCase() + name.slice(1)
+              && attribute(id, "aria-label") === name[0].toUpperCase() + name.slice(1);
+          });
+          addCheck("Identity labels and attributes stay intact", identityLabelsStayedIntact);
+
+          const diagnostics = window.__browserFixtureDiagnostics;
+          const mutableTextNode = document.getElementById("mutable-text").firstChild;
+          const mutableAttributes = document.getElementById("mutable-attributes");
+          mutableTextNode.nodeValue = "Settings";
+          mutableAttributes.setAttribute("title", "Settings");
+          mutableAttributes.setAttribute("aria-label", "Project");
+          await waitFor(
+            () => text("mutable-text") === "设置" && attribute("mutable-attributes", "title") === "设置" && attribute("mutable-attributes", "aria-label") === "项目",
+            2500,
+            "Live character and attribute updates translated"
+          );
+          addCheck("Character data updates translate", text("mutable-text") === "设置", `actual: ${text("mutable-text")}`);
+          addCheck("Attribute updates translate", attribute("mutable-attributes", "title") === "设置" && attribute("mutable-attributes", "aria-label") === "项目");
+
+          const resourcePicker = document.createElement("div");
+          resourcePicker.innerHTML = '<button id="dynamic-file-control" type="button" role="combobox" aria-label="Attach file" aria-controls="dynamic-file-options" title="Home">Home</button><div id="dynamic-file-options" role="listbox"><div id="dynamic-file-option" role="option">Home</div></div>';
+          document.getElementById("dynamic-host").appendChild(resourcePicker);
+          await waitFor(
+            () => attribute("dynamic-file-control", "aria-label") === "附加文件",
+            1500,
+            "Dynamic Attach file control translates"
+          );
+          await nextFrame();
+          await nextFrame();
+          document.getElementById("dynamic-file-option").textContent = "Search";
+          await nextFrame();
+          await nextFrame();
+          addCheck("Translated resource control keeps selected names protected", attribute("dynamic-file-control", "title") === "Home" && text("dynamic-file-option") === "Search");
+
+          const removedHost = document.createElement("div");
+          const removedNode = document.createElement("span");
+          removedNode.title = "Search";
+          removedNode.textContent = "Search";
+          document.body.appendChild(removedHost);
+          removedHost.appendChild(removedNode);
+          removedNode.remove();
+          await nextFrame();
+          await nextFrame();
+          addCheck("Disconnected mutation roots are ignored", !removedNode.isConnected && removedNode.textContent === "Search" && removedNode.title === "Search");
+          removedHost.remove();
+
+          const identityTitles = ["Agents", "Codex", "Live", "Realtime"];
+          for (const identityTitle of identityTitles) {
+            const previousMutationCount = diagnostics.titleMutations;
+            document.title = identityTitle;
+            await nextFrame();
+            await nextFrame();
+            addCheck(`Identity document title ${identityTitle} stays stable`, document.title === identityTitle && diagnostics.titleMutations === previousMutationCount + 1, `observed ${diagnostics.titleMutations - previousMutationCount} title mutations`);
+          }
+
+          const host = document.getElementById("dynamic-host");
+          const outer = document.createElement("div");
+          outer.id = "dynamic-outer";
+          const nested = document.createElement("div");
+          nested.id = "dynamic-nested";
+          const fragment = document.createDocumentFragment();
+          const bulkCount = 1000;
+          for (let index = 0; index < bulkCount; index += 1) {
+            const label = document.createElement("span");
+            label.className = "bulk-label";
+            label.title = "Search";
+            label.textContent = "Search";
+            fragment.appendChild(label);
+          }
+
+          diagnostics.bulkRoot = nested;
+          const mutationRecordsBeforeBulk = diagnostics.totalMutationRecords;
+          host.appendChild(outer);
+          outer.appendChild(nested);
+          nested.appendChild(fragment);
+
+          const bulkReady = await waitFor(() => {
+            const labels = nested.querySelectorAll(".bulk-label");
+            return labels.length === bulkCount && [...labels].every((label) => label.textContent === "搜索" && label.title === "搜索");
+          }, 5000, "Dynamic nested labels translated");
+          const settledTextMutationCount = diagnostics.bulkTextMutationCount;
+          const settledTitleMutationCount = diagnostics.bulkTitleMutationCount;
+          const settledTitleCount = diagnostics.titleMutations;
+          const settledTotalMutationRecords = diagnostics.totalMutationRecords;
+          await nextFrame();
+          await nextFrame();
+          await nextFrame();
+
+          const labels = [...nested.querySelectorAll(".bulk-label")];
+          addCheck("All 1,000 dynamic labels translate", bulkReady && labels.length === bulkCount && labels.every((label) => label.textContent === "搜索"));
+          addCheck("Dynamic label attributes translate", bulkReady && labels.every((label) => label.title === "搜索"));
+          addCheck("Each dynamic text node changes once", diagnostics.bulkTextTargets.size === bulkCount && diagnostics.bulkTextMutationCount === bulkCount, `observed ${diagnostics.bulkTextMutationCount} text writes on ${diagnostics.bulkTextTargets.size} nodes`);
+          addCheck("Each dynamic title changes once", diagnostics.bulkTitleTargets.size === bulkCount && diagnostics.bulkTitleMutationCount === bulkCount, `observed ${diagnostics.bulkTitleMutationCount} title writes on ${diagnostics.bulkTitleTargets.size} nodes`);
+          addCheck("Dynamic batch settles without mutation churn", diagnostics.bulkTextMutationCount + diagnostics.bulkTitleMutationCount === bulkCount * 2);
+          addCheck("Bulk observer flush does not churn title mutations", diagnostics.titleMutations === settledTitleCount, `observed ${diagnostics.titleMutations - settledTitleCount} additional title mutations`);
+          addCheck("Bulk counts stay stable across frames", diagnostics.bulkTextMutationCount === settledTextMutationCount && diagnostics.bulkTitleMutationCount === settledTitleMutationCount);
+          addCheck("Mutation observer settles across frames", diagnostics.totalMutationRecords === settledTotalMutationRecords);
+          addCheck("Bulk mutation records stay bounded", settledTotalMutationRecords - mutationRecordsBeforeBulk <= bulkCount * 2 + 20, `observed ${settledTotalMutationRecords - mutationRecordsBeforeBulk} mutation records`);
+          addCheck("Translated page title Projects and four identity titles mutate once each", diagnostics.titleMutations === identityTitles.length + 1, `observed ${diagnostics.titleMutations} total title mutations`);
+          addCheck("Identity labels do not trigger mutations", diagnostics.identityMutations === 0, `observed ${diagnostics.identityMutations} identity mutations`);
+
+          finish();
+        } catch (error) {
+          addCheck("Browser fixture completed without an exception", false, String(error?.stack || error));
+          finish();
+        }
+      }
+
+      window.setTimeout(() => {
+        if (finished) return;
+        addCheck("Browser fixture completed before the watchdog", false, "timed out after 12 seconds");
+        finish();
+      }, 12000);
+
+      document.addEventListener("DOMContentLoaded", run, { once: true });
+    })();
+  </script>
+</body>
+</html>

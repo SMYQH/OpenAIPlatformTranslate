@@ -1,0 +1,13 @@
+// ==UserScript==
+// @name         OpenAI API 平台界面简体中文
+// @namespace    platform.openai.com
+// @version      1.1.0
+// @description  翻译 OpenAI Platform API 界面为简体中文
+// @homepageURL  https://github.com/SMYQH/OpenAIPlatformTranslate
+// @supportURL   https://github.com/SMYQH/OpenAIPlatformTranslate/issues
+// @license      AGPL-3.0
+// @icon         https://chatgpt.com/favicon.ico
+// @match        https://platform.openai.com/*
+// @run-at       document-idle
+// @grant        none
+// ==/UserScript==
